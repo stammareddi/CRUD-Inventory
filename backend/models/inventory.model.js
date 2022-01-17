@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const exerciseSchema = new Schema({
+const inventorySchema = new Schema({
   locationName: { type: String, required: true },
   itemName: {type: String, required:true},
   itemSummary: {type: String, required:true},
@@ -15,6 +15,6 @@ const exerciseSchema = new Schema({
   timestamps: true,
 });
 
-const Exercise = mongoose.model('Exercise', exerciseSchema);
+const Inventory = mongoose.model('Inventory', inventorySchema);
 
-module.exports = Exercise;
+module.exports = Inventory;

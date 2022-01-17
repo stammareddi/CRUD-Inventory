@@ -1,8 +1,8 @@
 const router = require('express').Router();
-let Exercise = require('../models/exercise.model');
+let Inventory = require('../models/inventory.model');
 
 router.route('/').get((req, res) => {
-  Exercise.find()
+  Inventory.find()
     .then(exercises => res.json(exercises))
     .catch(err => res.status(400).json('Error: ' + err));
 });
@@ -15,7 +15,7 @@ router.route('/add').post((req, res) => {
   const itemCost = req.body.itemCost;
   const itemStock = req.body.itemStock;
 
-  const newExercise = new Exercise({
+  const newItem = new Inventory({
     locationName,
     itemName,
     itemSummary,
@@ -24,37 +24,37 @@ router.route('/add').post((req, res) => {
     itemStock
   });
 
-  newExercise.save()
-  .then(() => res.json('Exercise added!'))
+  newItem.save()
+  .then(() => res.json('Item added!'))
   .catch(err => res.status(400).json('Error: ' + err));
 });
 
 router.route('/:id').get((req, res) => {
-  Exercise.findById(req.params.id)
-    .then(exercise => res.json(exercise))
+  Inventory.findById(req.params.id)
+    .then(e => res.json(e))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
 router.route('/:id').delete((req, res) => {
-  Exercise.findByIdAndDelete(req.params.id)
+  Inventory.findByIdAndDelete(req.params.id)
     .then(() => res.json('Exercise deleted.'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
 router.route('/update/:id').post((req, res) => {
-  Exercise.findById(req.params.id)
-    .then(exercise => {
-      exercise.locationName = req.body.locationName;
-      exercise.itemName = req.body.itemName;
-      exercise.itemSummary = req.body.itemSummary;
-      exercise.itemType = req.body.itemType;
-      exercise.itemCost = req.body.itemCost;
-      exercise.itemStock = req.body.itemStock;
+  Inventory.findById(req.params.id)
+    .then(item => {
+      item.locationName = req.body.locationName;
+      item.itemName = req.body.itemName;
+      item.itemSummary = req.body.itemSummary;
+      item.itemType = req.body.itemType;
+      item.itemCost = req.body.itemCost;
+      item.itemStock = req.body.itemStock;
 
 
 
 
-      exercise.save()
+      item.save()
         .then(() => res.json('Exercise updated!'))
         .catch(err => res.status(400).json('Error: ' + err));
     })
