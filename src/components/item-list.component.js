@@ -59,7 +59,7 @@ export default class ItemList extends Component {
         <table className="table">
           <thead className="thead-light">
             <tr>
-              <th>Location</th>
+              <th>Warehouse</th>
               <th>Item Name</th>
               <th>Item Summary</th>
               <th>Item Type</th>
